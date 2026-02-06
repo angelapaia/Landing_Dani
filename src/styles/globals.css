@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /* CSS Variables - Design Tokens - Nueva Paleta Médica */
+  :root {
+    --color-brand-black: #000000;
+    --color-brand-dark: #1E3E54;
+    --color-brand-accent: #2F5876;
+    --color-brand-accent-light: #4A7C9E;
+    --color-brand-accent-dark: #1E4A5F;
+    --color-brand-beige: #F4EBDD;
+    --color-brand-green: #7C9A6D;
+
+    /* Luxury Metallic Accents (Mejora #8) */
+    --color-gold-accent: #D4AF37;
+    --color-gold-light: #E8D7A0;
+    --color-gold-dark: #B8941F;
+    --color-platinum: #E8E8E8;
+
+    /* Spacing */
+    --spacing-section: 8rem;
+    --spacing-section-sm: 6rem;
+
+    /* Typography */
+    --font-serif: 'Merriweather', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* Shadows - Actualizados para nueva paleta */
+    --shadow-premium: 0 20px 60px -15px rgba(47, 88, 118, 0.3);
+    --shadow-glow: 0 0 40px rgba(47, 88, 118, 0.4);
+    --shadow-whatsapp: 0 15px 35px -5px rgba(37, 211, 102, 0.4);
+    --shadow-medical: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+    /* Luxury Shadow Hierarchy (Mejora #11) */
+    --shadow-luxury-minimal: 0 2px 8px rgba(0, 0, 0, 0.12);
+    --shadow-luxury-medium: 0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-luxury-elevated: 0 20px 60px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-luxury-gold: 0 8px 32px rgba(212, 175, 55, 0.15);
+    --shadow-gold-glow: 0 0 24px rgba(212, 175, 55, 0.2), 0 0 48px rgba(212, 175, 55, 0.1);
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-brand-dark text-white font-sans antialiased;
+  }
+
+  /* Typography Styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+
+  /* Custom Selection */
+  ::selection {
+    @apply bg-brand-accent text-white;
+  }
+
+  /* Smooth Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-accent rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-accent-light;
+  }
+}
+
+@layer components {
+
+  /* WhatsApp CTA Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 font-semibold text-white bg-whatsapp-green rounded-full hover:bg-whatsapp-teal transition-all duration-300 hover:scale-105;
+    box-shadow: 0 15px 35px -5px rgba(37, 211, 102, 0.4);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 30px rgba(37, 211, 102, 0.6);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 font-semibold text-white border-2 border-brand-accent rounded-full hover:bg-brand-accent/10 transition-all duration-300;
+  }
+
+  /* Medical Card */
+  .card-medical {
+    @apply bg-brand-black/40 backdrop-blur-medical border border-white/10 rounded-2xl p-6 shadow-medical-card hover:border-brand-accent/50 transition-all duration-300;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  /* Grid Layout Binario (Desktop: Texto Izquierda / Visual Derecha) */
+  .grid-binary {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center;
+  }
+
+  /* Glow Effect */
+  .glow-accent {
+    @apply relative;
+  }
+
+  .glow-accent::before {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-brand-accent opacity-30 blur-3xl animate-glow-pulse;
+  }
+
+  /* Premium Divider & Ornament System (Mejora #10) */
+  .divider-premium {
+    @apply h-px bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent;
+  }
+
+  .divider-luxury {
+    @apply h-px;
+    background: linear-gradient(to right, transparent, var(--color-gold-accent) 20%, transparent 80%);
+    opacity: 0.3;
+  }
+
+  .ornament-accent {
+    @apply inline-block w-8 h-1 rounded-full;
+    background: linear-gradient(to right, var(--color-brand-accent), var(--color-brand-accent-light));
+  }
+
+  .ornament-section-start {
+    @apply inline-flex items-center gap-3;
+  }
+
+  .ornament-section-start::before {
+    content: '';
+    @apply w-2 h-2 rounded-full;
+    background: var(--color-gold-accent);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  }
+
+  .medical-card-bordered {
+    @apply relative;
+    border-left: 3px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image:
+      linear-gradient(to right, rgba(47, 88, 118, 0.05), transparent),
+      linear-gradient(90deg, var(--color-brand-accent), transparent 100%);
+  }
+}
+
+@layer utilities {
+
+  /* Text Gradients */
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-brand-accent to-brand-accent-light bg-clip-text text-transparent;
+  }
+
+  /* Glass Effect */
+  .glass-medical {
+    @apply bg-white/5 backdrop-blur-medical border border-white/10;
+  }
+
+  /* Hover Lift */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
+  }
+
+  /* Focus States (Accessibility) */
+  .focus-medical {
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark;
+  }
+}
