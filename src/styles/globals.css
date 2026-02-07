@@ -162,6 +162,106 @@
       linear-gradient(to right, rgba(47, 88, 118, 0.05), transparent),
       linear-gradient(90deg, var(--color-brand-accent), transparent 100%);
   }
+
+  /* Hierarchical Card Elevation System (Mejora #2 - Fase 2) */
+
+  /* Tier 1: Background Depth - Subtle elevation */
+  .card-elevation-1 {
+    @apply relative rounded-2xl transition-all duration-300;
+    box-shadow: var(--shadow-luxury-minimal);
+    background: linear-gradient(135deg, rgba(47, 88, 118, 0.05) 0%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .card-elevation-1::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none;
+    background: radial-gradient(circle at 50% 0%, rgba(47, 88, 118, 0.08) 0%, transparent 70%);
+  }
+
+  .card-elevation-1:hover::before {
+    @apply opacity-100;
+  }
+
+  .card-elevation-1:hover {
+    box-shadow: var(--shadow-luxury-medium);
+    transform: translateY(-2px);
+  }
+
+  /* Tier 2: Border Complexity - Medium elevation with animated border */
+  .card-elevation-2 {
+    @apply relative rounded-2xl transition-all duration-500;
+    box-shadow: var(--shadow-luxury-medium);
+    background: linear-gradient(135deg, rgba(47, 88, 118, 0.08) 0%, rgba(0, 0, 0, 0.3) 100%);
+  }
+
+  .card-elevation-2::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-60 transition-all duration-500 pointer-events-none;
+    background: linear-gradient(45deg, transparent 30%, rgba(74, 124, 158, 0.15) 50%, transparent 70%);
+    background-size: 200% 200%;
+  }
+
+  .card-elevation-2:hover::before {
+    @apply opacity-100;
+    background-position: 100% 100%;
+  }
+
+  .card-elevation-2:hover {
+    box-shadow: var(--shadow-luxury-elevated);
+    transform: translateY(-4px);
+  }
+
+  /* Tier 3: Interactive Premium - Maximum elevation with glow */
+  .card-elevation-3 {
+    @apply relative rounded-2xl transition-all duration-500;
+    box-shadow: var(--shadow-luxury-elevated);
+    background: linear-gradient(135deg, rgba(47, 88, 118, 0.12) 0%, rgba(0, 0, 0, 0.4) 100%);
+  }
+
+  .card-elevation-3::before {
+    content: '';
+    @apply absolute -inset-1 rounded-2xl opacity-0 transition-opacity duration-500 pointer-events-none blur-lg;
+    background: linear-gradient(135deg, rgba(47, 88, 118, 0.3), rgba(74, 124, 158, 0.2));
+  }
+
+  .card-elevation-3::after {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-all duration-500 pointer-events-none;
+    background: radial-gradient(circle at 50% 0%, rgba(47, 88, 118, 0.15) 0%, transparent 60%);
+  }
+
+  .card-elevation-3:hover::before {
+    @apply opacity-100;
+  }
+
+  .card-elevation-3:hover::after {
+    @apply opacity-100;
+  }
+
+  .card-elevation-3:hover {
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.25),
+      0 12px 32px rgba(0, 0, 0, 0.15),
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      0 0 40px rgba(47, 88, 118, 0.2);
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* Gold Variant - Para elementos premium destacados */
+  .card-elevation-gold {
+    @apply card-elevation-3;
+  }
+
+  .card-elevation-gold::before {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+  }
+
+  .card-elevation-gold:hover {
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.25),
+      0 12px 32px rgba(0, 0, 0, 0.15),
+      var(--shadow-gold-glow);
+  }
 }
 
 @layer utilities {

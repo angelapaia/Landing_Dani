@@ -1,70 +1,47 @@
 'use client';
 
-import { useRef, useState, MouseEvent } from 'react';
-import { motion } from 'framer-motion';
+import PremiumCard from '@/components/ui/PremiumCard';
+import { ReactNode } from 'react';
 
 interface SpotlightCardProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
+  tier?: 1 | 2 | 3 | 'gold';
+  enable3D?: boolean;
 }
 
 /**
  * SpotlightCard Component
- * Card con efecto de spotlight que sigue al mouse
+ * Card con efecto de spotlight que sigue al mouse + sistema de elevation
+ *
+ * Mejora #2 - Fase 2: Extiende PremiumCard con spotlight habilitado
+ *
+ * Features:
+ * - Spotlight effect que sigue al mouse
+ * - Multi-layer elevation system
+ * - Animated borders on hover
+ * - 3D transform opcional
+ * - Gradient border glow
+ *
+ * @param tier - Nivel de elevación (1-3 o 'gold'), default 2
+ * @param enable3D - Habilitar efecto 3D con mouse tracking, default false
+ * @param className - Clases adicionales
  */
-export default function SpotlightCard({ children, className = '' }: SpotlightCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    setMousePosition({ x, y });
-  };
-
+export default function SpotlightCard({
+  children,
+  className = '',
+  tier = 2,
+  enable3D = false,
+}: SpotlightCardProps) {
   return (
-    <motion.div
-      ref={cardRef}
-      className={`card-medical relative overflow-hidden group ${className}`}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+    <PremiumCard
+      tier={tier}
+      enable3D={enable3D}
+      spotlight={true}
+      className={`card-medical group ${className}`}
     >
-      {/* Spotlight Effect */}
-      {isHovered && (
-        <motion.div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(10, 61, 98, 0.15), transparent 40%)`,
-          }}
-        />
-      )}
-
-      {/* Gradient Border Effect */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div
-          className="absolute inset-0 rounded-2xl"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(10, 61, 98, 0.4), transparent 40%)`,
-            padding: '1px',
-            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-            WebkitMaskComposite: 'xor',
-            maskComposite: 'exclude',
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10">{children}</div>
-    </motion.div>
+      {/* Content con padding interno */}
+      <div className="p-6 h-full relative z-10">{children}</div>
+    </PremiumCard>
   );
 }

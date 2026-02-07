@@ -2,7 +2,13 @@ import type { Metadata } from 'next';
 import { Merriweather, Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { siteConfig } from '@/config/siteConfig';
-import DarkVeil from '@/components/effects/DarkVeil';
+import dynamic from 'next/dynamic';
+
+const DarkVeil = dynamic(
+  () => import('@/components/effects/DarkVeil'),
+  { ssr: false }
+);
+
 
 // Tipografía Premium
 const merriweather = Merriweather({

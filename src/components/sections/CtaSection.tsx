@@ -1,28 +1,45 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useTransform } from 'framer-motion';
 import { siteConfig, faqData } from '@/config/siteConfig';
 import { generateWhatsAppLink } from '@/lib/utils/whatsapp';
 import MagnetButton from '@/components/animated/MagnetButton';
+import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 
 /**
  * CtaSection Component
  * Risk Reversal & Conversión Final
+ *
+ * Mejora #3 - Fase 3: Scroll-Physics Animation System
  *
  * Objetivo:
  * - Resolver últimas objeciones con FAQ
  * - Mostrar garantías y risk reversal
  * - CTA final irresistible
  * - Generar confianza para la conversión
+ * - FAQ border glow pulse
+ * - CTA button scale basado en scroll proximity
  */
 
 export default function CtaSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  // Scroll progress para animaciones
+  const scrollProgress = useScrollProgress(sectionRef, ['start end', 'center center']);
+  const ctaScrollProgress = useScrollProgress(ctaRef, ['start end', 'center center']);
+
+  // FAQ border glow pulse basado en scroll
+  const faqBorderOpacity = useTransform(scrollProgress, [0, 0.5, 1], [0.3, 0.6, 0.3]);
+
+  // CTA button scale basado en scroll proximity
+  const ctaScale = useTransform(ctaScrollProgress, [0, 0.5, 1], [0.95, 1.05, 1]);
 
   const whatsappLink = generateWhatsAppLink(
     siteConfig.whatsapp.number,
@@ -30,7 +47,10 @@ export default function CtaSection() {
   );
 
   return (
-    <section className="relative py-20 lg:py-section overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-20 lg:py-section overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Radial Gradient */}
@@ -74,7 +94,7 @@ export default function CtaSection() {
             </p>
           </motion.div>
 
-          {/* FAQ Accordion */}
+          {/* FAQ Accordion - Border glow pulse */}
           <div className="space-y-4">
             {faqData.map((faq, index) => (
               <motion.div
@@ -83,7 +103,14 @@ export default function CtaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="card-medical overflow-hidden"
+                className="card-medical overflow-hidden relative"
+                style={{
+                  boxShadow: useTransform(
+                    faqBorderOpacity,
+                    (opacity) =>
+                      `0 0 20px rgba(47, 88, 118, ${opacity}), 0 0 40px rgba(47, 88, 118, ${opacity * 0.5})`
+                  ),
+                }}
               >
                 {/* Question Button */}
                 <button
@@ -138,8 +165,9 @@ export default function CtaSection() {
           </div>
         </div>
 
-        {/* FINAL CTA BOX */}
+        {/* FINAL CTA BOX - Scale basado en scroll proximity */}
         <motion.div
+          ref={ctaRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -270,12 +298,13 @@ export default function CtaSection() {
                 ))}
               </motion.div>
 
-              {/* CTA Button */}
+              {/* CTA Button - Dynamic scale basado en scroll proximity */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.6 }}
+                style={{ scale: ctaScale }}
                 className="flex justify-center"
               >
                 <MagnetButton strength={0.5}>

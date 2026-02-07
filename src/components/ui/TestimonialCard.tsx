@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import PremiumCard from './PremiumCard';
 
 interface TestimonialCardProps {
   initials: string;
@@ -11,14 +12,17 @@ interface TestimonialCardProps {
 
 /**
  * TestimonialCard Component
- * Card premium para testimonios de pacientes
+ * Card premium para testimonios de pacientes con sistema de elevation
+ *
+ * Mejora #2 - Fase 2: Usa PremiumCard con tier 2 (medium elevation)
  *
  * Features:
+ * - Multi-layer shadow elevation
  * - Diseño anónimo con iniciales
  * - Quote marks decorativos
- * - Animación de entrada
- * - Hover effect sutil
- * - Rating stars visual
+ * - Animated border on hover
+ * - Rating stars visual con stagger
+ * - 3D hover effect sutil
  */
 export default function TestimonialCard({
   initials,
@@ -27,15 +31,13 @@ export default function TestimonialCard({
   delay = 0,
 }: TestimonialCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.6 }}
-      whileHover={{ y: -5 }}
-      className="group"
+    <PremiumCard
+      tier={2}
+      enable3D={false}
+      spotlight={false}
+      className="h-full group"
     >
-      <div className="card-medical h-full relative overflow-hidden">
+      <div className="p-6 h-full relative overflow-hidden bg-brand-black/40 backdrop-blur-medical border border-white/10 rounded-2xl">
         {/* Gradient Accent on Hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -116,6 +118,6 @@ export default function TestimonialCard({
           </div>
         </div>
       </div>
-    </motion.div>
+    </PremiumCard>
   );
 }

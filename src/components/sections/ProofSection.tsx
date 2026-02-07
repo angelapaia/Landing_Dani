@@ -1,8 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import { siteConfig, testimonialsData } from '@/config/siteConfig';
+import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 
 // Animation variants para stagger pattern premium (Mejora #4)
 const containerVariants = {
@@ -40,6 +42,9 @@ const itemVariants = {
  * ProofSection Component
  * Social Proof & Trust - Credibilidad y Autoridad
  *
+ * Mejora #3 - Fase 3: Scroll-Physics Animation System
+ * Mejora #4 - Fase 1: Stagger Animation Pattern
+ *
  * Layout Binario: Texto (Izquierda) / Testimonios (Derecha)
  *
  * Objetivo:
@@ -47,6 +52,7 @@ const itemVariants = {
  * - Mostrar prueba social (testimonios)
  * - Destacar métricas clave (ubicación, precio, alcance)
  * - Generar confianza para la conversión
+ * - Metric boxes slide from edges basado en scroll
  */
 
 const metrics = [
@@ -91,8 +97,20 @@ const metrics = [
 ];
 
 export default function ProofSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
+
+  // Metric boxes slide directions basado en index
+  const getMetricSlideDirection = (index: number) => {
+    const directions = [-100, 0, 100]; // Left, Center, Right
+    return directions[index] || 0;
+  };
+
   return (
-    <section className="relative py-20 lg:py-section overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-20 lg:py-section overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Radial Gradient */}
@@ -153,7 +171,7 @@ export default function ProofSection() {
               de un {siteConfig.pastor.proof.integration}.
             </motion.p>
 
-            {/* Metrics Grid */}
+            {/* Metrics Grid - Slide from edges */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -164,11 +182,26 @@ export default function ProofSection() {
               {metrics.map((metric, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{
+                    opacity: 0,
+                    x: getMetricSlideDirection(index),
+                    scale: 0.9,
+                  }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-brand-black/40 border border-white/5 hover:border-brand-accent/30 transition-colors group"
+                  transition={{
+                    delay: 0.7 + index * 0.15,
+                    duration: 0.6,
+                    type: 'spring',
+                    damping: 20,
+                    stiffness: 100,
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -4,
+                    transition: { duration: 0.2 },
+                  }}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-brand-black/40 border border-white/5 hover:border-brand-accent/30 transition-colors group cursor-pointer"
                 >
                   {/* Icon */}
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent/30 transition-colors">

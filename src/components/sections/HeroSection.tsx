@@ -1,30 +1,46 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import SplitText from '@/components/animated/SplitText';
 import MagnetButton from '@/components/animated/MagnetButton';
 import GlowImage from '@/components/ui/GlowImage';
 import { siteConfig } from '@/config/siteConfig';
 import { generateWhatsAppLink } from '@/lib/utils/whatsapp';
+import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 
 /**
  * HeroSection Component
  * Layout Binario: Texto (Izquierda) / Imagen (Derecha)
  *
+ * Mejora #3 - Fase 3: Scroll-Physics Animation System
+ *
  * Implementa:
  * - Headline con SplitText animado
  * - Subtítulo persuasivo médico
  * - CTA con MagnetButton
- * - Imagen del doctor con efecto glow premium
+ * - Imagen del doctor con efecto glow premium + rotación tied a scroll
+ * - Scroll indicator con pulse dinámico
  */
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollProgress = useScrollProgress(sectionRef, ['start start', 'end start']);
+
+  // Transformaciones basadas en scroll progress
+  const imageRotate = useTransform(scrollProgress, [0, 1], [0, 5]);
+  const imageScale = useTransform(scrollProgress, [0, 1], [1, 0.95]);
+  const imageY = useTransform(scrollProgress, [0, 1], [0, 50]);
+
   const whatsappLink = generateWhatsAppLink(
     siteConfig.whatsapp.number,
     siteConfig.whatsapp.message
   );
 
   return (
-    <section className="relative min-h-screen flex items-center py-20 lg:py-section overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center py-20 lg:py-section overflow-hidden"
+    >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient Orbs */}
@@ -172,11 +188,16 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - IMAGEN CON EFECTO GLOW PREMIUM */}
+          {/* RIGHT SIDE - IMAGEN CON EFECTO GLOW PREMIUM + SCROLL ROTATION */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
+            style={{
+              rotateZ: imageRotate,
+              scale: imageScale,
+              y: imageY,
+            }}
             className="relative flex items-center justify-center lg:justify-end"
           >
             <GlowImage
@@ -191,16 +212,26 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Desaparece con scroll progress */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
+        style={{
+          opacity: useTransform(scrollProgress, [0, 0.2], [1, 0]),
+        }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={{
+            y: [0, 10, 0],
+            scale: [1, 1.05, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
           className="flex flex-col items-center gap-2 text-gray-400"
         >
           <span className="text-xs uppercase tracking-wider">Scroll</span>

@@ -1,12 +1,16 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import ProtocolDiagram from '@/components/ui/ProtocolDiagram';
 import { siteConfig } from '@/config/siteConfig';
+import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 
 /**
  * SolutionSection Component
  * El Mecanismo Único - Protocolo LIP360 Cardona®
+ *
+ * Mejora #3 - Fase 3: Scroll-Physics Animation System
  *
  * Layout Binario: Texto (Izquierda) / Diagrama Interactivo (Derecha)
  *
@@ -15,6 +19,8 @@ import { siteConfig } from '@/config/siteConfig';
  * - Explicar el enfoque integral (no solo cirugía)
  * - Transmitir confianza y expertise
  * - Diferenciar de competidores
+ * - Background grid fade con scroll
+ * - Quote character-by-character reveal
  */
 
 const protocolSteps = siteConfig.pastor.mechanism.steps.map((step, index) => ({
@@ -25,17 +31,27 @@ const protocolSteps = siteConfig.pastor.mechanism.steps.map((step, index) => ({
 }));
 
 export default function SolutionSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
+
+  // Background grid opacity basado en scroll
+  const gridOpacity = useTransform(scrollProgress, [0, 0.3, 0.7, 1], [0, 0.05, 0.05, 0]);
+
   return (
-    <section className="relative py-20 lg:py-section overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-20 lg:py-section overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient Mesh */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 via-transparent to-transparent opacity-50" />
 
-        {/* Decorative Grid */}
-        <div
-          className="absolute inset-0 opacity-5"
+        {/* Decorative Grid - Fade in durante scroll */}
+        <motion.div
+          className="absolute inset-0"
           style={{
+            opacity: gridOpacity,
             backgroundImage: `linear-gradient(to right, rgba(10, 61, 98, 0.2) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(10, 61, 98, 0.2) 1px, transparent 1px)`,
             backgroundSize: '80px 80px',
@@ -166,21 +182,63 @@ export default function SolutionSection() {
               </div>
             </motion.div>
 
-            {/* Credibility Statement */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            {/* Credibility Statement - Character-by-character reveal */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ delay: 1.1, duration: 0.6 }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.02,
+                    delayChildren: 1.1,
+                  },
+                },
+              }}
               className="text-sm text-gray-400 italic border-l-2 border-brand-accent/30 pl-4"
             >
-              "El objetivo no es solo mejorar la apariencia, sino{' '}
+              {'"El objetivo no es solo mejorar la apariencia, sino '
+                .split('')
+                .map((char, i) => (
+                  <motion.span
+                    key={`char-${i}`}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
               <strong className="text-white">
-                reducir el dolor, mejorar la movilidad y recuperar calidad de
-                vida
+                {'reducir el dolor, mejorar la movilidad y recuperar calidad de vida'
+                  .split('')
+                  .map((char, i) => (
+                    <motion.span
+                      key={`strong-${i}`}
+                      variants={{
+                        hidden: { opacity: 0, y: 10 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
               </strong>
-              ." — Dr. Daniel Cardona
-            </motion.p>
+              {' ." — Dr. Daniel Cardona'.split('').map((char, i) => (
+                <motion.span
+                  key={`end-${i}`}
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.div>
           </div>
 
           {/* RIGHT SIDE - DIAGRAMA INTERACTIVO */}

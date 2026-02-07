@@ -1,12 +1,17 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import SpotlightCard from '@/components/animated/SpotlightCard';
 import { siteConfig } from '@/config/siteConfig';
+import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 
 /**
  * ProblemSection Component
  * Sección de Empatía - Agitación del Dolor
+ *
+ * Mejora #3 - Fase 3: Scroll-Physics Animation System
+ * Mejora #4 - Fase 1: Stagger Animation Pattern
  *
  * Layout Binario: Texto (Izquierda) / SpotlightCards (Derecha)
  *
@@ -14,6 +19,8 @@ import { siteConfig } from '@/config/siteConfig';
  * - Conectar emocionalmente con el dolor del paciente
  * - Validar sus frustraciones
  * - Crear urgencia para la solución
+ * - Icons shake en frustration
+ * - Emotion badges pulse basado en scroll
  */
 
 // Animation variants para stagger pattern premium (Mejora #4)
@@ -80,8 +87,18 @@ const frustrations = [
 ];
 
 export default function ProblemSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
+
+  // Transformaciones basadas en scroll para efectos de frustración
+  const badgeOpacity = useTransform(scrollProgress, [0.2, 0.5, 0.8], [0.5, 1, 0.5]);
+  const iconShake = useTransform(scrollProgress, [0, 0.5, 1], [0, 2, 0]);
+
   return (
-    <section className="relative py-20 lg:py-section overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-20 lg:py-section overflow-hidden"
+    >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Dark Gradient Overlay */}
@@ -214,15 +231,36 @@ export default function ProblemSection() {
                   variants={itemVariants}
                 >
                   <SpotlightCard className="h-full">
-                    {/* Emotion Badge */}
-                    <div className="mb-4">
+                    {/* Emotion Badge - Pulse basado en scroll */}
+                    <motion.div
+                      className="mb-4"
+                      style={{
+                        opacity: badgeOpacity,
+                      }}
+                    >
                       <span className="inline-block px-3 py-1 rounded-full bg-brand-accent/20 text-xs font-medium text-brand-accent-light">
                         {frustration.emotion}
                       </span>
-                    </div>
+                    </motion.div>
 
-                    {/* Icon */}
-                    <div className="text-4xl mb-4">{frustration.icon}</div>
+                    {/* Icon - Shake en frustration */}
+                    <motion.div
+                      className="text-4xl mb-4"
+                      style={{
+                        x: iconShake,
+                      }}
+                      animate={{
+                        rotate: [0, -5, 5, -5, 5, 0],
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        delay: index * 0.2,
+                        repeat: Infinity,
+                        repeatDelay: 3,
+                      }}
+                    >
+                      {frustration.icon}
+                    </motion.div>
 
                     {/* Title */}
                     <h3 className="text-xl font-bold text-white mb-3 leading-tight">
