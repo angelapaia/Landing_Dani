@@ -2,10 +2,11 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useTransform } from 'framer-motion';
-import { siteConfig, faqData } from '@/config/siteConfig';
+import { siteConfig } from '@/config/siteConfig';
 import { generateWhatsAppLink } from '@/lib/utils/whatsapp';
 import MagnetButton from '@/components/animated/MagnetButton';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
+import { useTranslations } from 'next-intl';
 
 /**
  * CtaSection Component
@@ -23,6 +24,7 @@ import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
  */
 
 export default function CtaSection() {
+  const t = useTranslations();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -43,7 +45,7 @@ export default function CtaSection() {
 
   const whatsappLink = generateWhatsAppLink(
     siteConfig.whatsapp.number,
-    siteConfig.whatsapp.message
+    t('cta.whatsappMessage')
   );
 
   return (
@@ -84,19 +86,19 @@ export default function CtaSection() {
             className="text-center mb-12"
           >
             <span className="inline-block px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-sm font-medium text-brand-accent-light mb-4">
-              Preguntas frecuentes
+              {t('cta.faqEyebrow')}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              ¿Tienes dudas? Aquí las resolvemos
+              {t('cta.faqTitle')}
             </h2>
             <p className="text-lg text-gray-300">
-              Respuestas directas a las preguntas más comunes
+              {t('cta.faqSubtitle')}
             </p>
           </motion.div>
 
           {/* FAQ Accordion - Border glow pulse */}
           <div className="space-y-4">
-            {faqData.map((faq, index) => (
+            {(t.raw('faq.questions') as any[]).map((faq: any, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -203,7 +205,7 @@ export default function CtaSection() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Garantía de acompañamiento
+                  {t('proof.eyebrow')}
                 </span>
               </motion.div>
 
@@ -215,7 +217,7 @@ export default function CtaSection() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
               >
-                Agenda tu consulta hoy y da el primer paso hacia tu bienestar
+                {t('cta.finalTitle')}
               </motion.h2>
 
               {/* Description */}
@@ -226,8 +228,7 @@ export default function CtaSection() {
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed"
               >
-                {siteConfig.pastor.cta.secondary}: valoración clara, plan
-                personalizado y seguimiento continuo.
+                {t('cta.finalSubtitle')}
               </motion.p>
 
               {/* Trust Points */}
@@ -321,7 +322,7 @@ export default function CtaSection() {
                     >
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                     </svg>
-                    {siteConfig.pastor.cta.primary}
+                    {t('cta.primary')}
                   </a>
                 </MagnetButton>
               </motion.div>

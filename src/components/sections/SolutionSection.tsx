@@ -3,8 +3,8 @@
 import { motion, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import ProtocolDiagram from '@/components/ui/ProtocolDiagram';
-import { siteConfig } from '@/config/siteConfig';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
+import { useTranslations } from 'next-intl';
 
 /**
  * SolutionSection Component
@@ -23,16 +23,17 @@ import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
  * - Quote character-by-character reveal
  */
 
-const protocolSteps = siteConfig.pastor.mechanism.steps.map((step, index) => ({
-  number: index + 1,
-  title: step.title,
-  description: step.description,
-  icon: ['🔍', '📚', '🏥', '💆‍♀️', '📊'][index], // Icons for each step
-}));
-
 export default function SolutionSection() {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
+
+  const protocolSteps = (t.raw('solution.steps') as any[]).map((step, index) => ({
+    number: index + 1,
+    title: step.title,
+    description: step.description,
+    icon: ['🔍', '📚', '🏥', '💆‍♀️', '📊'][index], // Icons for each step
+  }));
 
   // Background grid opacity basado en scroll
   const gridOpacity = useTransform(scrollProgress, [0, 0.3, 0.7, 1], [0, 0.05, 0.05, 0]);
@@ -72,7 +73,7 @@ export default function SolutionSection() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-sm font-medium text-brand-accent-light">
-                La Solución Integral
+                {t('solution.eyebrow')}
               </span>
             </motion.div>
 
@@ -85,10 +86,10 @@ export default function SolutionSection() {
               className="space-y-4"
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white">
-                {siteConfig.pastor.mechanism.name}
+                {t('solution.title')}
               </h2>
               <p className="text-xl text-brand-accent-light font-medium">
-                {siteConfig.pastor.mechanism.description}
+                {t('solution.subtitle')}
               </p>
             </motion.div>
 

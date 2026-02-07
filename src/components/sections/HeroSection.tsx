@@ -8,6 +8,7 @@ import DualImageCrossfade from '@/components/ui/DualImageCrossfade';
 import { siteConfig } from '@/config/siteConfig';
 import { generateWhatsAppLink } from '@/lib/utils/whatsapp';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
+import { useTranslations } from 'next-intl';
 
 
 /**
@@ -24,6 +25,7 @@ import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
  * - Scroll indicator con pulse dinámico
  */
 export default function HeroSection() {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useScrollProgress(sectionRef, ['start start', 'end start']);
 
@@ -34,7 +36,7 @@ export default function HeroSection() {
 
   const whatsappLink = generateWhatsAppLink(
     siteConfig.whatsapp.number,
-    siteConfig.whatsapp.message
+    t('cta.whatsappMessage')
   );
 
   return (
@@ -89,27 +91,33 @@ export default function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
                 </span>
-                Especialista en Lipedema · Bogotá
+                {t('hero.specialization')} · {t('location.city')}
               </span>
             </motion.div>
 
             {/* Headline Principal (3 líneas) */}
             <div className="space-y-2">
-              {siteConfig.pastor.promise.split('\n').map((line, index) => (
-                <SplitText
-                  key={index}
-                  className={`${index === 0
-                    ? 'text-3xl md:text-4xl lg:text-5xl'
-                    : index === 1
-                      ? 'text-2xl md:text-3xl lg:text-4xl'
-                      : 'text-xl md:text-2xl lg:text-3xl text-brand-accent-light'
-                    } font-bold leading-tight text-white block`}
-                  delay={0.3 + index * 0.2}
-                  duration={0.08}
-                >
-                  {line}
-                </SplitText>
-              ))}
+              <SplitText
+                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white block"
+                delay={0.3}
+                duration={0.08}
+              >
+                {t('hero.title')}
+              </SplitText>
+              <SplitText
+                className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white block"
+                delay={0.5}
+                duration={0.08}
+              >
+                {t('hero.subtitle')}
+              </SplitText>
+              <SplitText
+                className="text-xl md:text-2xl lg:text-3xl text-brand-accent-light font-bold leading-tight block"
+                delay={0.7}
+                duration={0.08}
+              >
+                #{t('hero.protocol')}
+              </SplitText>
             </div>
 
             {/* Subtítulo Persuasivo */}
@@ -119,7 +127,7 @@ export default function HeroSection() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-xl"
             >
-              {siteConfig.description}
+              {t('site.description')}
             </motion.p>
 
             {/* Trust Badges (Micro-Proof) */}
@@ -138,7 +146,7 @@ export default function HeroSection() {
                   />
                 </svg>
                 <span>
-                  <strong className="text-white">Bogotá, Usaquén</strong>
+                  <strong className="text-white">{t('location.city')}, {t('location.area')}</strong>
                 </span>
               </div>
 
@@ -147,7 +155,7 @@ export default function HeroSection() {
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
                 <span>
-                  <strong className="text-white">{siteConfig.consultation.price}</strong>
+                  <strong className="text-white">{t('consultation.price')}</strong>
                 </span>
               </div>
 
@@ -159,7 +167,7 @@ export default function HeroSection() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Pacientes nacionales e internacionales</span>
+                <span>{t('proof.target')}</span>
               </div>
             </motion.div>
 
@@ -179,11 +187,11 @@ export default function HeroSection() {
                 >
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                 </svg>
-                {siteConfig.pastor.cta.primary}
+                {t('cta.primary')}
               </MagnetButton>
 
               <p className="mt-3 text-sm text-gray-400">
-                {siteConfig.pastor.cta.secondary}
+                {t('cta.secondary')}
               </p>
             </motion.div>
           </div>
@@ -205,7 +213,7 @@ export default function HeroSection() {
                 'https://i.ibb.co/ZzT6mW4S/MG-6287.jpg',
                 'https://i.ibb.co/FkW5xypY/74884b67-fc62-46c0-8b76-0faf64c04db0.jpg',
               ]}
-              alt="Dr. Daniel Cardona - Cirujano Plástico Especialista en Lipedema"
+              alt={`${t('site.name')} - ${t('hero.subtitle')} ${t('hero.specialization')}`}
               width={600}
               height={800}
               priority

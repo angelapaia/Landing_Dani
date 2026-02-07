@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import { siteConfig } from '@/config/siteConfig';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
+import { useTranslations } from 'next-intl';
 
 /**
  * ProblemSection Component
@@ -20,6 +20,7 @@ import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
  */
 
 export default function ProblemSection() {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
 
@@ -56,7 +57,7 @@ export default function ProblemSection() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block px-4 py-2 rounded-full bg-red-500/10 border border-red-500/30 text-sm font-medium text-red-400">
-                El Problema Real
+                {t('problem.eyebrow')}
               </span>
             </motion.div>
 
@@ -68,7 +69,7 @@ export default function ProblemSection() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white"
             >
-              {siteConfig.pastor.pain.headline}
+              {t('problem.headline')}
             </motion.h2>
 
             {/* Pain Points List */}
@@ -79,7 +80,7 @@ export default function ProblemSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="space-y-4"
             >
-              {siteConfig.pastor.pain.points.map((point, index) => (
+              {(t.raw('problem.points') as string[]).map((point: string, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
@@ -122,12 +123,11 @@ export default function ProblemSection() {
               className="p-6 rounded-2xl bg-gradient-to-br from-red-500/10 to-transparent border border-red-500/20"
             >
               <p className="text-xl font-medium text-white leading-relaxed">
-                No es solo estética.{' '}
+                {t('problem.emotionalImpact.prefix')}{' '}
                 <span className="text-red-400">
-                  Es dolor, limitación funcional y pérdida de calidad de vida
+                  {t('problem.emotionalImpact.highlight')}
                 </span>
-                . Y necesitas un diagnóstico claro y un plan integral, no más
-                frustración.
+                {t('problem.emotionalImpact.suffix')}
               </p>
             </motion.div>
 
@@ -139,8 +139,7 @@ export default function ProblemSection() {
               transition={{ delay: 1.1, duration: 0.6 }}
               className="text-sm text-gray-400 italic"
             >
-              Si te identificas con esto, no estás sola/o. El lipedema es una
-              condición médica real que requiere un abordaje especializado.
+              {t('problem.trustStatement')}
             </motion.p>
           </div>
 
@@ -157,7 +156,7 @@ export default function ProblemSection() {
             {/* Imagen solicitada */}
             <img
               src="https://i.ibb.co/RkLDnwhF/PHOTO-2025-09-11-17-13-33.jpg"
-              alt="Paciente con lipedema buscando solución real"
+              alt={t('problem.imageAlt')}
               className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
             />
 

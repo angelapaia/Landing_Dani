@@ -3,8 +3,9 @@
 import { motion, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import TestimonialCard from '@/components/ui/TestimonialCard';
-import { siteConfig, testimonialsData } from '@/config/siteConfig';
+import { siteConfig } from '@/config/siteConfig';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
+import { useTranslations } from 'next-intl';
 
 // Animation variants para stagger pattern premium (Mejora #4)
 const containerVariants = {
@@ -55,50 +56,51 @@ const itemVariants = {
  * - Metric boxes slide from edges basado en scroll
  */
 
-const metrics = [
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-        <path
-          fillRule="evenodd"
-          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-    label: 'Ubicación',
-    value: siteConfig.pastor.proof.location,
-    description: 'Centro Médico de la Sabana',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-      </svg>
-    ),
-    label: 'Consulta',
-    value: siteConfig.pastor.proof.consultationPrice,
-    description: 'Primera valoración médica',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-        <path
-          fillRule="evenodd"
-          d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-    label: 'Alcance',
-    value: siteConfig.pastor.proof.target,
-    description: 'Coordinación por WhatsApp',
-  },
-];
-
 export default function ProofSection() {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
+
+  const metrics = [
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fillRule="evenodd"
+            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+      label: t('proof.metrics.location.label'),
+      value: t('proof.location'),
+      description: t('proof.metrics.location.description'),
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+        </svg>
+      ),
+      label: t('proof.metrics.consultation.label'),
+      value: t('proof.consultationPrice'),
+      description: t('proof.metrics.consultation.description'),
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fillRule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+      label: t('proof.metrics.reach.label'),
+      value: t('proof.target'),
+      description: t('proof.metrics.reach.description'),
+    },
+  ];
 
   // Metric boxes slide directions basado en index
   const getMetricSlideDirection = (index: number) => {
@@ -144,7 +146,7 @@ export default function ProofSection() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-sm font-medium text-green-400">
-                Confianza Comprobada
+                {t('proof.eyebrow')}
               </span>
             </motion.div>
 
@@ -156,7 +158,7 @@ export default function ProofSection() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white"
             >
-              Resultados reales con pacientes reales
+              {t('proof.title')}
             </motion.h2>
 
             {/* Description */}
@@ -167,8 +169,7 @@ export default function ProofSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-lg text-gray-300 leading-relaxed"
             >
-              {siteConfig.pastor.proof.approach} con enfoque integral a través
-              de un {siteConfig.pastor.proof.integration}.
+              {t('proof.subtitle')}
             </motion.p>
 
             {/* Metrics Grid - Slide from edges */}
@@ -303,7 +304,7 @@ export default function ProofSection() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              {testimonialsData.map((testimonial, index) => (
+              {(t.raw('proof.testimonials') as any[]).map((testimonial: any, index: number) => (
                 <motion.div key={index} variants={itemVariants}>
                   <TestimonialCard
                     initials={testimonial.initials}

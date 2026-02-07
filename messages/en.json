@@ -1,0 +1,147 @@
+{
+  "site": {
+    "name": "Dr. Daniel Cardona",
+    "title": "Dr. Daniel Cardona - Plastic Surgeon Specializing in Lipedema Surgery | LegSculpt360",
+    "description": "LegSculpt360 Protocol: debulking surgery + lymphatic drainage + 1-year follow-up"
+  },
+  "nav": {
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Dr. Daniel Cardona",
+    "subtitle": "Plastic Surgeon",
+    "specialization": "Lipedema Surgery Specialist",
+    "protocol": "LegSculpt360",
+    "cta": "Schedule Consultation"
+  },
+  "problem": {
+    "eyebrow": "The Real Problem",
+    "headline": "I've been dealing with pain, heaviness, and swelling for years that don't improve with diet or exercise",
+    "points": [
+      "Constant pain and heaviness in legs and/or arms",
+      "Frustrating body disproportion",
+      "I was told it's obesity or cellulite",
+      "Loss of time, money, and self-esteem",
+      "I need a clear diagnosis and real treatment"
+    ],
+    "emotionalImpact": {
+      "prefix": "It's not just about aesthetics.",
+      "highlight": "It's pain, functional limitation, and loss of quality of life",
+      "suffix": ". And you need a clear diagnosis and comprehensive plan, not more frustration."
+    },
+    "trustStatement": "If you identify with this, you're not alone. Lipedema is a real medical condition that requires specialized care.",
+    "imageAlt": "Patient with lipedema seeking real solution"
+  },
+  "solution": {
+    "eyebrow": "The Comprehensive Solution",
+    "title": "LegSculpt360 Protocol",
+    "subtitle": "Debulking Surgery + Lymphatic Drainage + Comprehensive Follow-up",
+    "description": "A comprehensive approach that combines specialized surgery, supportive therapy, and continuous follow-up for lasting results.",
+    "steps": [
+      {
+        "title": "Assessment and selection",
+        "description": "Precise clinical diagnosis and evaluation of medical criteria"
+      },
+      {
+        "title": "Patient education",
+        "description": "Clear explanation: what is lipedema, options, and realistic expectations"
+      },
+      {
+        "title": "Personalized comprehensive plan",
+        "description": "Surgical component (when applicable) + conservative component"
+      },
+      {
+        "title": "Therapeutic support",
+        "description": "Coordination with lymphatic drainage, compression, pressotherapy, and lifestyle habits"
+      },
+      {
+        "title": "Medical follow-up",
+        "description": "Scheduled check-ups and continuous plan optimization"
+      }
+    ]
+  },
+  "proof": {
+    "eyebrow": "Real Results",
+    "title": "What our patients say",
+    "subtitle": "Real cases of patients who found relief and improved their quality of life",
+    "location": "Bogotá (Centro Médico de la Sabana, Usaquén)",
+    "consultationPrice": "In-person or virtual consultation 300,000 COP (85 USD)",
+    "approach": "Private care and direct WhatsApp contact",
+    "integration": "Specialized center in lipedema/lymphedema (therapy + surgical option)",
+    "target": "National and international patients",
+    "metrics": {
+      "location": {
+        "label": "Location",
+        "description": "Centro Médico de la Sabana"
+      },
+      "consultation": {
+        "label": "Consultation",
+        "description": "Initial medical assessment"
+      },
+      "reach": {
+        "label": "Reach",
+        "description": "WhatsApp coordination"
+      }
+    },
+    "testimonials": [
+      {
+        "initials": "M.G.",
+        "text": "Restored my mobility and relief",
+        "location": "Bogotá"
+      },
+      {
+        "initials": "L.R.",
+        "text": "Finally understood my diagnosis",
+        "location": "Cali"
+      },
+      {
+        "initials": "A.S.",
+        "text": "Impeccable support",
+        "location": "Medellín"
+      }
+    ]
+  },
+  "cta": {
+    "primary": "Schedule consultation via WhatsApp",
+    "secondary": "Team response to coordinate your assessment",
+    "whatsappMessage": "Hello, I would like to schedule a consultation",
+    "faqEyebrow": "Frequently asked questions",
+    "faqTitle": "Have questions? We answer them here",
+    "faqSubtitle": "Direct answers to the most common questions",
+    "finalTitle": "Ready to take the first step?",
+    "finalSubtitle": "Schedule your initial assessment and get a clear diagnosis"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Am I a candidate for lipedema surgery?",
+        "answer": "Candidacy is determined during the initial assessment. We evaluate the degree of lipedema, your overall health, goals, and expectations. Not all cases require surgery; some are managed with conservative therapy."
+      },
+      {
+        "question": "What does the initial assessment include?",
+        "answer": "The consultation includes: complete medical history, detailed physical examination, diagnosis explanation, review of therapeutic options (conservative and/or surgical), answers to all your questions, and delivery of a personalized plan."
+      },
+      {
+        "question": "What is the comprehensive plan like (before and after)?",
+        "answer": "Before: preparation with clear instructions, coordination of studies if applicable, and education about the procedure. After: follow-up with scheduled check-ups, physical therapy (drainage, compression), care instructions, and continuous optimization."
+      },
+      {
+        "question": "Do you see international patients? How do we coordinate the trip?",
+        "answer": "Yes, we see patients from abroad. We coordinate via WhatsApp: assessment, recommended stay schedule, pre-trip instructions, and remote post-procedure follow-up. We accompany you every step of the way."
+      },
+      {
+        "question": "Where is the consultation and how do I schedule via WhatsApp?",
+        "answer": "The consultation is in Bogotá (Centro Médico de la Sabana, Usaquén). To schedule, send a WhatsApp message with your name, city/country of origin, and reason for consultation. The team responds to coordinate an available date."
+      }
+    ]
+  },
+  "consultation": {
+    "price": "In-person or virtual consultation 300,000 COP (85 USD)"
+  },
+  "location": {
+    "city": "Bogotá",
+    "area": "Usaquén",
+    "center": "Centro Médico de la Sabana"
+  }
+}
