@@ -96,7 +96,7 @@ export default function DualImageCrossfade({
                 </div>
 
                 {/* Glass Border Effect */}
-                <div className="absolute inset-0 rounded-3xl border border-white/10 backdrop-blur-sm" />
+                <div className="absolute inset-0 rounded-3xl border border-white/10" />
 
                 {/* Image Container with Glassmorphism and Crossfade */}
                 <motion.div
@@ -105,8 +105,8 @@ export default function DualImageCrossfade({
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                 >
-                    {/* Backdrop Blur Layer */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 to-transparent backdrop-blur-[2px] z-10 pointer-events-none" />
+                    {/* Backdrop Layer */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 to-transparent z-10 pointer-events-none" />
 
                     {/* Crossfade Images */}
                     <div className="relative" style={{ width, height }}>
