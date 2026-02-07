@@ -1,8 +1,7 @@
 'use client';
 
-import { motion, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import SpotlightCard from '@/components/animated/SpotlightCard';
 import { siteConfig } from '@/config/siteConfig';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 
@@ -11,88 +10,18 @@ import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
  * Sección de Empatía - Agitación del Dolor
  *
  * Mejora #3 - Fase 3: Scroll-Physics Animation System
- * Mejora #4 - Fase 1: Stagger Animation Pattern
  *
- * Layout Binario: Texto (Izquierda) / SpotlightCards (Derecha)
+ * Layout Binario: Texto (Izquierda) / Imagen (Derecha)
  *
  * Objetivo:
  * - Conectar emocionalmente con el dolor del paciente
  * - Validar sus frustraciones
  * - Crear urgencia para la solución
- * - Icons shake en frustration
- * - Emotion badges pulse basado en scroll
  */
-
-// Animation variants para stagger pattern premium (Mejora #4)
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,      // 80ms entre items
-      delayChildren: 0.2,          // Initial delay
-      ease: "easeOut"
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: "blur(4px)"  // Blur entrance effect
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      type: "spring",
-      damping: 20,
-      stiffness: 100,
-      mass: 0.8
-    }
-  }
-};
-
-const frustrations = [
-  {
-    icon: '💪',
-    title: 'Dieta y ejercicio sin resultados',
-    description:
-      'Hago dieta y ejercicio, pero mis piernas (o brazos) no cambian. La desproporción sigue igual o empeora.',
-    emotion: 'Frustración',
-  },
-  {
-    icon: '😣',
-    title: 'Dolor y pesadez constante',
-    description:
-      'Siento dolor, inflamación y pesadez que no desaparece. Me limita en mi día a día y afecta mi calidad de vida.',
-    emotion: 'Agotamiento',
-  },
-  {
-    icon: '🚫',
-    title: 'Diagnósticos incorrectos',
-    description:
-      'Me dijeron que es celulitis, obesidad o "solo retención"... pero los síntomas empeoran y nadie me da una solución real.',
-    emotion: 'Confusión',
-  },
-  {
-    icon: '😰',
-    title: 'Miedo a una cirugía sin experto',
-    description:
-      'Quiero una solución, pero me da miedo operarme sin un especialista que realmente entienda el lipedema y tenga experiencia.',
-    emotion: 'Incertidumbre',
-  },
-];
 
 export default function ProblemSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useScrollProgress(sectionRef, ['start end', 'end start']);
-
-  // Transformaciones basadas en scroll para efectos de frustración
-  const badgeOpacity = useTransform(scrollProgress, [0.2, 0.5, 0.8], [0.5, 1, 0.5]);
-  const iconShake = useTransform(scrollProgress, [0, 0.5, 1], [0, 2, 0]);
 
   return (
     <section
@@ -116,7 +45,7 @@ export default function ProblemSection() {
 
       {/* Content Container */}
       <div className="section-container relative z-10">
-        <div className="grid-binary gap-16">
+        <div className="grid-binary gap-16 items-center">
           {/* LEFT SIDE - COPY DE AGITACIÓN */}
           <div className="flex flex-col justify-center space-y-8">
             {/* Eyebrow */}
@@ -215,85 +144,30 @@ export default function ProblemSection() {
             </motion.p>
           </div>
 
-          {/* RIGHT SIDE - GRID DE SPOTLIGHT CARDS */}
-          <div className="relative">
-            {/* Cards Grid - Stagger Animation Pattern (Mejora #4) */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {frustrations.map((frustration, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                >
-                  <SpotlightCard className="h-full">
-                    {/* Emotion Badge - Pulse basado en scroll */}
-                    <motion.div
-                      className="mb-4"
-                      style={{
-                        opacity: badgeOpacity,
-                      }}
-                    >
-                      <span className="inline-block px-3 py-1 rounded-full bg-brand-accent/20 text-xs font-medium text-brand-accent-light">
-                        {frustration.emotion}
-                      </span>
-                    </motion.div>
+          {/* RIGHT SIDE - IMAGEN */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="relative h-full min-h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-red-500/10 border border-white/5"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
 
-                    {/* Icon - Shake en frustration */}
-                    <motion.div
-                      className="text-4xl mb-4"
-                      style={{
-                        x: iconShake,
-                      }}
-                      animate={{
-                        rotate: [0, -5, 5, -5, 5, 0],
-                      }}
-                      transition={{
-                        duration: 0.5,
-                        delay: index * 0.2,
-                        repeat: Infinity,
-                        repeatDelay: 3,
-                      }}
-                    >
-                      {frustration.icon}
-                    </motion.div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-                      {frustration.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-400 leading-relaxed">
-                      {frustration.description}
-                    </p>
-                  </SpotlightCard>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Decorative Glow Effect */}
-            <motion.div
-              className="absolute -bottom-20 -right-20 w-96 h-96 bg-red-500/5 rounded-full blur-3xl pointer-events-none"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.05, 0.1, 0.05],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
+            {/* Imagen solicitada */}
+            <img
+              src="https://i.ibb.co/RkLDnwhF/PHOTO-2025-09-11-17-13-33.jpg"
+              alt="Paciente con lipedema buscando solución real"
+              className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
             />
-          </div>
+
+            {/* Decorative Glow Effect behind image */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-brand-accent opacity-20 blur-xl -z-10" />
+          </motion.div>
         </div>
       </div>
 
-      {/* Section Divider - Premium (Mejora #10) */}
+      {/* Section Divider - Premium */}
       <div className="absolute bottom-0 left-0 right-0 divider-premium" />
     </section>
   );
