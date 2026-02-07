@@ -8,7 +8,7 @@ export const siteConfig = {
   title: 'Dr. Daniel Cardona - Cirujano Plástico Especialista en Cirugía de Lipedema | LegSculpt360',
   description:
     'Protocolo LegSculpt360: cirugía de descarga + drenaje linfático + seguimiento 1 año',
-  url: 'https://drdanielcardona.com',
+  url: 'https://www.drdanielcardona.com/lipedema',
   whatsapp: {
     number: '+573105302266',
     message: 'Hola, me gustaría agendar una consulta',

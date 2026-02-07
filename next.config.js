@@ -4,6 +4,7 @@ const withNextIntl = require('next-intl/plugin')(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    basePath: '/lipedema',
     reactStrictMode: true,
     swcMinify: true,
     async redirects() {
