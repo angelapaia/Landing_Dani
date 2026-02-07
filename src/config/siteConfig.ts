@@ -19,7 +19,7 @@ export const siteConfig = {
     center: 'Centro Médico de la Sabana',
   },
   consultation: {
-    price: '$300.000 COP',
+    price: '300.000 COP ($85 USD)',
     currency: 'COP',
   },
   // Framework PASTOR
@@ -74,7 +74,7 @@ export const siteConfig = {
     // Prueba Social
     proof: {
       location: 'Bogotá (Centro Médico de la Sabana, Usaquén)',
-      consultationPrice: '$280.000 COP',
+      consultationPrice: '300.000 COP ($85 USD)',
       approach: 'Atención privada y contacto directo por WhatsApp',
       integration: 'Centro especializado en lipedema/linfedema (terapia + opción quirúrgica)',
       target: 'Pacientes nacionales e internacionales',

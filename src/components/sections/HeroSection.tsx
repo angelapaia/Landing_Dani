@@ -4,10 +4,11 @@ import { motion, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import SplitText from '@/components/animated/SplitText';
 import MagnetButton from '@/components/animated/MagnetButton';
-import GlowImage from '@/components/ui/GlowImage';
+import DualImageCrossfade from '@/components/ui/DualImageCrossfade';
 import { siteConfig } from '@/config/siteConfig';
 import { generateWhatsAppLink } from '@/lib/utils/whatsapp';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
+
 
 /**
  * HeroSection Component
@@ -97,13 +98,12 @@ export default function HeroSection() {
               {siteConfig.pastor.promise.split('\n').map((line, index) => (
                 <SplitText
                   key={index}
-                  className={`${
-                    index === 0
-                      ? 'text-3xl md:text-4xl lg:text-5xl'
-                      : index === 1
+                  className={`${index === 0
+                    ? 'text-3xl md:text-4xl lg:text-5xl'
+                    : index === 1
                       ? 'text-2xl md:text-3xl lg:text-4xl'
                       : 'text-xl md:text-2xl lg:text-3xl text-brand-accent-light'
-                  } font-bold leading-tight text-white block`}
+                    } font-bold leading-tight text-white block`}
                   delay={0.3 + index * 0.2}
                   duration={0.08}
                 >
@@ -200,8 +200,11 @@ export default function HeroSection() {
             }}
             className="relative flex items-center justify-center lg:justify-end"
           >
-            <GlowImage
-              src="/assets/images/doctor-hero.jpg"
+            <DualImageCrossfade
+              images={[
+                'https://i.ibb.co/ZzT6mW4S/MG-6287.jpg',
+                'https://i.ibb.co/FkW5xypY/74884b67-fc62-46c0-8b76-0faf64c04db0.jpg',
+              ]}
               alt="Dr. Daniel Cardona - Cirujano Plástico Especialista en Lipedema"
               width={600}
               height={800}
