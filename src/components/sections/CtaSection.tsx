@@ -254,7 +254,7 @@ export default function CtaSection() {
                         />
                       </svg>
                     ),
-                    text: 'Coordinación directa por WhatsApp',
+                    text: t('cta.coordinationText'),
                   },
                   {
                     icon: (
@@ -270,7 +270,7 @@ export default function CtaSection() {
                         />
                       </svg>
                     ),
-                    text: 'Atención en Bogotá (Usaquén)',
+                    text: t('cta.locationText'),
                   },
                   {
                     icon: (
@@ -286,7 +286,7 @@ export default function CtaSection() {
                         />
                       </svg>
                     ),
-                    text: 'Consulta presencial o virtual 300.000 COP (85 USD)',
+                    text: t('cta.consultationText'),
                   },
                 ].map((point, index) => (
                   <div
@@ -348,9 +348,7 @@ export default function CtaSection() {
                     />
                   </svg>
                   <span>
-                    <strong className="text-white">Sin riesgo:</strong>{' '}
-                    Coordinación sin compromiso. Si coordinas cita y necesitas
-                    reprogramar, te apoyamos con flexibilidad administrativa.
+                    {t('cta.riskFreeText')}
                   </span>
                 </p>
               </motion.div>
@@ -367,11 +365,10 @@ export default function CtaSection() {
           className="mt-12 text-center"
         >
           <p className="text-sm text-gray-500">
-            Centro Médico de la Sabana, Usaquén, Bogotá, Colombia
+            {t('location.fullAddress')}
           </p>
           <p className="text-xs text-gray-600 mt-2">
-            © {new Date().getFullYear()} Dr. Daniel Cardona. Todos los derechos
-            reservados.
+            {t('site.copyright')}
           </p>
         </motion.div>
       </div>

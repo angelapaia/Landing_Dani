@@ -249,13 +249,10 @@ export default function ProofSection() {
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white mb-2">
-                    Garantía de acompañamiento
+                    {t('proof.guaranteeTitle')}
                   </h4>
                   <p className="text-gray-300 leading-relaxed">
-                    Desde la primera consulta hasta el seguimiento
-                    post-tratamiento, recibes atención personalizada y
-                    coordinación directa por WhatsApp para resolver tus dudas y
-                    coordinar tu plan.
+                    {t('proof.guaranteeText')}
                   </p>
                 </div>
               </div>
@@ -269,12 +266,7 @@ export default function ProofSection() {
               transition={{ delay: 1.2, duration: 0.6 }}
               className="text-sm text-gray-400 italic"
             >
-              Más de{' '}
-              <strong className="text-brand-accent-light">
-                cientos de pacientes
-              </strong>{' '}
-              han confiado en el Dr. Cardona para su tratamiento de lipedema y
-              cirugía plástica.
+              {t('proof.trustText')}
             </motion.p>
           </div>
 
@@ -289,10 +281,10 @@ export default function ProofSection() {
               className="mb-8 text-center lg:text-left"
             >
               <h3 className="text-2xl font-bold text-white mb-2">
-                Lo que dicen nuestros pacientes
+                {t('proof.testimonialsTitle')}
               </h3>
               <p className="text-gray-400">
-                Experiencias reales de personas que recuperaron su bienestar
+                {t('proof.testimonialsSubtitle')}
               </p>
             </motion.div>
 
@@ -325,11 +317,7 @@ export default function ProofSection() {
               className="mt-8 p-4 rounded-xl bg-brand-accent/5 border border-brand-accent/20"
             >
               <p className="text-sm text-gray-400 text-center">
-                <span className="text-brand-accent-light font-medium">
-                  Testimonios verificados.
-                </span>{' '}
-                Protegemos la privacidad de nuestros pacientes usando solo
-                iniciales.
+                {t('proof.testimonialsDisclaimer')}
               </p>
             </motion.div>
 

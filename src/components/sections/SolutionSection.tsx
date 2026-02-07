@@ -102,19 +102,12 @@ export default function SolutionSection() {
               className="space-y-4"
             >
               <p className="text-lg text-gray-300 leading-relaxed">
-                El lipedema no es un problema estético. Es una{' '}
-                <strong className="text-white">condición médica crónica</strong>{' '}
-                que requiere un enfoque integral:
+                {t('solution.keyMessage')}
               </p>
 
               {/* Key Points */}
               <div className="space-y-3">
-                {[
-                  'No solo cirugía → Tratamiento completo',
-                  'No solo estética → Funcionalidad y calidad de vida',
-                  'No solo operar → Entender, educar y acompañar',
-                  'No solo un día → Seguimiento y optimización continua',
-                ].map((point, index) => (
+                {(t.raw('solution.keyPoints') as string[]).map((point, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
@@ -168,16 +161,10 @@ export default function SolutionSection() {
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white mb-2">
-                    ¿Por qué es diferente?
+                    {t('solution.whyDifferentTitle')}
                   </h4>
                   <p className="text-gray-300 leading-relaxed">
-                    Porque integra{' '}
-                    <strong className="text-brand-accent-light">
-                      criterios médicos claros
-                    </strong>
-                    , educación del paciente, coordinación con terapia
-                    conservadora y seguimiento a largo plazo. No es solo
-                    "operarse y ya".
+                    {t('solution.whyDifferentText')}
                   </p>
                 </div>
               </div>
@@ -200,7 +187,7 @@ export default function SolutionSection() {
               }}
               className="text-sm text-gray-400 italic border-l-2 border-brand-accent/30 pl-4"
             >
-              {'"El objetivo no es solo mejorar la apariencia, sino '
+              {`"${t('solution.quoteText')}." — ${t('solution.quoteAuthor')}`
                 .split('')
                 .map((char, i) => (
                   <motion.span
@@ -213,32 +200,6 @@ export default function SolutionSection() {
                     {char}
                   </motion.span>
                 ))}
-              <strong className="text-white">
-                {'reducir el dolor, mejorar la movilidad y recuperar calidad de vida'
-                  .split('')
-                  .map((char, i) => (
-                    <motion.span
-                      key={`strong-${i}`}
-                      variants={{
-                        hidden: { opacity: 0, y: 10 },
-                        visible: { opacity: 1, y: 0 },
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-              </strong>
-              {' ." — Dr. Daniel Cardona'.split('').map((char, i) => (
-                <motion.span
-                  key={`end-${i}`}
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                >
-                  {char}
-                </motion.span>
-              ))}
             </motion.div>
           </div>
 
@@ -261,10 +222,10 @@ export default function SolutionSection() {
                 className="mb-8 text-center lg:text-left"
               >
                 <h3 className="text-2xl font-bold text-white mb-2">
-                  El Proceso Paso a Paso
+                  {t('solution.processTitle')}
                 </h3>
                 <p className="text-gray-400">
-                  Pasa el cursor sobre cada paso para más detalles
+                  {t('solution.processSubtitle')}
                 </p>
               </motion.div>
 
@@ -280,11 +241,7 @@ export default function SolutionSection() {
                 className="mt-8 p-4 rounded-xl bg-brand-accent/5 border border-brand-accent/20"
               >
                 <p className="text-sm text-gray-400 text-center">
-                  <span className="text-brand-accent-light font-medium">
-                    Cada caso es único.
-                  </span>{' '}
-                  El protocolo se personaliza según tus necesidades,
-                  diagnóstico y objetivos.
+                  {t('solution.uniqueApproach')}
                 </p>
               </motion.div>
             </div>

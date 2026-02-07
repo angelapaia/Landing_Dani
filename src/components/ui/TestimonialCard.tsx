@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import PremiumCard from './PremiumCard';
+import { useTranslations } from 'next-intl';
 
 interface TestimonialCardProps {
   initials: string;
@@ -30,6 +31,8 @@ export default function TestimonialCard({
   location,
   delay = 0,
 }: TestimonialCardProps) {
+  const t = useTranslations();
+
   return (
     <PremiumCard
       tier={2}
@@ -88,7 +91,7 @@ export default function TestimonialCard({
 
             {/* Info */}
             <div className="flex-1 min-w-0">
-              <p className="text-white font-medium">Paciente verificado</p>
+              <p className="text-white font-medium">{t('proof.verifiedPatient')}</p>
               <p className="text-sm text-gray-400 flex items-center gap-1">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path

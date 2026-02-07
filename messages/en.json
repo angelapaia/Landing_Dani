@@ -2,7 +2,8 @@
   "site": {
     "name": "Dr. Daniel Cardona",
     "title": "Dr. Daniel Cardona - Plastic Surgeon Specializing in Lipedema Surgery | LegSculpt360",
-    "description": "LegSculpt360 Protocol: debulking surgery + lymphatic drainage + 1-year follow-up"
+    "description": "LegSculpt360 Protocol: debulking surgery + lymphatic drainage + 1-year follow-up",
+    "copyright": "© 2026 Dr. Daniel Cardona. All rights reserved."
   },
   "nav": {
     "language": "Language"
@@ -37,6 +38,20 @@
     "title": "LegSculpt360 Protocol",
     "subtitle": "Debulking Surgery + Lymphatic Drainage + Comprehensive Follow-up",
     "description": "A comprehensive approach that combines specialized surgery, supportive therapy, and continuous follow-up for lasting results.",
+    "keyMessage": "Lipedema is not an aesthetic problem. It's a chronic medical condition that requires a comprehensive approach:",
+    "keyPoints": [
+      "Not just surgery → Comprehensive treatment",
+      "Not just aesthetics → Functionality and quality of life",
+      "Not just operating → Understanding, educating, and supporting",
+      "Not just one day → Follow-up and continuous optimization"
+    ],
+    "whyDifferentTitle": "Why is it different?",
+    "whyDifferentText": "Because it integrates clear medical criteria, patient education, coordination with conservative therapy, and long-term follow-up. It's not just \"get surgery and that's it\".",
+    "quoteText": "The goal is not just to improve appearance, but to reduce pain, improve mobility, and restore quality of life.",
+    "quoteAuthor": "Dr. Daniel Cardona",
+    "processTitle": "The Step-by-Step Process",
+    "processSubtitle": "Hover over each step for more details",
+    "uniqueApproach": "Each case is unique. The protocol is personalized according to your needs, diagnosis, and goals.",
     "steps": [
       {
         "title": "Assessment and selection",
@@ -69,6 +84,13 @@
     "approach": "Private care and direct WhatsApp contact",
     "integration": "Specialized center in lipedema/lymphedema (therapy + surgical option)",
     "target": "National and international patients",
+    "guaranteeTitle": "Support Guarantee",
+    "guaranteeText": "From the first consultation to post-treatment follow-up, you receive personalized care and direct WhatsApp coordination to answer your questions and coordinate your plan.",
+    "trustText": "Over hundreds of patients have trusted Dr. Cardona for their lipedema treatment and plastic surgery.",
+    "testimonialsTitle": "What our patients say",
+    "testimonialsSubtitle": "Real experiences from people who recovered their well-being",
+    "verifiedPatient": "Verified patient",
+    "testimonialsDisclaimer": "Verified testimonials. We protect our patients' privacy using only initials.",
     "metrics": {
       "location": {
         "label": "Location",
@@ -109,7 +131,11 @@
     "faqTitle": "Have questions? We answer them here",
     "faqSubtitle": "Direct answers to the most common questions",
     "finalTitle": "Ready to take the first step?",
-    "finalSubtitle": "Schedule your initial assessment and get a clear diagnosis"
+    "finalSubtitle": "Schedule your initial assessment and get a clear diagnosis",
+    "coordinationText": "Direct WhatsApp coordination",
+    "locationText": "Care in Bogotá (Usaquén)",
+    "consultationText": "In-person or virtual consultation 300,000 COP (85 USD)",
+    "riskFreeText": "No risk: Coordination without commitment. If you schedule an appointment and need to reschedule, we support you with administrative flexibility."
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -142,6 +168,7 @@
   "location": {
     "city": "Bogotá",
     "area": "Usaquén",
-    "center": "Centro Médico de la Sabana"
+    "center": "Centro Médico de la Sabana",
+    "fullAddress": "Centro Médico de la Sabana, Usaquén, Bogotá, Colombia"
   }
 }

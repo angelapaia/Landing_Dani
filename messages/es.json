@@ -2,7 +2,8 @@
   "site": {
     "name": "Dr. Daniel Cardona",
     "title": "Dr. Daniel Cardona - Cirujano Plástico Especialista en Cirugía de Lipedema | LegSculpt360",
-    "description": "Protocolo LegSculpt360: cirugía de descarga + drenaje linfático + seguimiento 1 año"
+    "description": "Protocolo LegSculpt360: cirugía de descarga + drenaje linfático + seguimiento 1 año",
+    "copyright": "© 2026 Dr. Daniel Cardona. Todos los derechos reservados."
   },
   "nav": {
     "language": "Idioma"
@@ -37,6 +38,20 @@
     "title": "Protocolo LegSculpt360",
     "subtitle": "Cirugía de Descarga + Drenaje Linfático + Seguimiento Integral",
     "description": "Un enfoque integral que combina cirugía especializada, terapia de soporte y seguimiento continuo para resultados duraderos.",
+    "keyMessage": "El lipedema no es un problema estético. Es una condición médica crónica que requiere un enfoque integral:",
+    "keyPoints": [
+      "No solo cirugía → Tratamiento completo",
+      "No solo estética → Funcionalidad y calidad de vida",
+      "No solo operar → Entender, educar y acompañar",
+      "No solo un día → Seguimiento y optimización continua"
+    ],
+    "whyDifferentTitle": "¿Por qué es diferente?",
+    "whyDifferentText": "Porque integra criterios médicos claros, educación del paciente, coordinación con terapia conservadora y seguimiento a largo plazo. No es solo \"operarse y ya\".",
+    "quoteText": "El objetivo no es solo mejorar la apariencia, sino reducir el dolor, mejorar la movilidad y recuperar calidad de vida.",
+    "quoteAuthor": "Dr. Daniel Cardona",
+    "processTitle": "El Proceso Paso a Paso",
+    "processSubtitle": "Pasa el cursor sobre cada paso para más detalles",
+    "uniqueApproach": "Cada caso es único. El protocolo se personaliza según tus necesidades, diagnóstico y objetivos.",
     "steps": [
       {
         "title": "Valoración y selección",
@@ -69,6 +84,13 @@
     "approach": "Atención privada y contacto directo por WhatsApp",
     "integration": "Centro especializado en lipedema/linfedema (terapia + opción quirúrgica)",
     "target": "Pacientes nacionales e internacionales",
+    "guaranteeTitle": "Garantía de acompañamiento",
+    "guaranteeText": "Desde la primera consulta hasta el seguimiento post-tratamiento, recibes atención personalizada y coordinación directa por WhatsApp para resolver tus dudas y coordinar tu plan.",
+    "trustText": "Más de cientos de pacientes han confiado en el Dr. Cardona para su tratamiento de lipedema y cirugía plástica.",
+    "testimonialsTitle": "Lo que dicen nuestros pacientes",
+    "testimonialsSubtitle": "Experiencias reales de personas que recuperaron su bienestar",
+    "verifiedPatient": "Paciente verificado",
+    "testimonialsDisclaimer": "Testimonios verificados. Protegemos la privacidad de nuestros pacientes usando solo iniciales.",
     "metrics": {
       "location": {
         "label": "Ubicación",
@@ -109,7 +131,11 @@
     "faqTitle": "¿Tienes dudas? Aquí las resolvemos",
     "faqSubtitle": "Respuestas directas a las preguntas más comunes",
     "finalTitle": "¿Listo para dar el primer paso?",
-    "finalSubtitle": "Agenda tu valoración inicial y obtén un diagnóstico claro"
+    "finalSubtitle": "Agenda tu valoración inicial y obtén un diagnóstico claro",
+    "coordinationText": "Coordinación directa por WhatsApp",
+    "locationText": "Atención en Bogotá (Usaquén)",
+    "consultationText": "Consulta presencial o virtual 300.000 COP (85 USD)",
+    "riskFreeText": "Sin riesgo: Coordinación sin compromiso. Si coordinas cita y necesitas reprogramar, te apoyamos con flexibilidad administrativa."
   },
   "faq": {
     "title": "Preguntas Frecuentes",
@@ -142,6 +168,7 @@
   "location": {
     "city": "Bogotá",
     "area": "Usaquén",
-    "center": "Centro Médico de la Sabana"
+    "center": "Centro Médico de la Sabana",
+    "fullAddress": "Centro Médico de la Sabana, Usaquén, Bogotá, Colombia"
   }
 }
