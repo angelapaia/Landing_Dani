@@ -285,7 +285,7 @@ export default function CtaSection() {
                         />
                       </svg>
                     ),
-                    text: 'Valoración desde $280.000 COP',
+                    text: 'Consulta presencial o virtual 300.000 COP (85 USD)',
                   },
                 ].map((point, index) => (
                   <div
