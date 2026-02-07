@@ -31,7 +31,9 @@
       "suffix": ". And you need a clear diagnosis and comprehensive plan, not more frustration."
     },
     "trustStatement": "If you identify with this, you're not alone. Lipedema is a real medical condition that requires specialized care.",
-    "imageAlt": "Patient with lipedema seeking real solution"
+    "imageAlt": "Patient with lipedema seeking real solution",
+    "beforeLabel": "Before",
+    "afterLabel": "After"
   },
   "solution": {
     "eyebrow": "The Comprehensive Solution",

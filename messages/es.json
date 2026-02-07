@@ -31,7 +31,9 @@
       "suffix": ". Y necesitas un diagnóstico claro y un plan integral, no más frustración."
     },
     "trustStatement": "Si te identificas con esto, no estás sola/o. El lipedema es una condición médica real que requiere un abordaje especializado.",
-    "imageAlt": "Paciente con lipedema buscando solución real"
+    "imageAlt": "Paciente con lipedema buscando solución real",
+    "beforeLabel": "Antes",
+    "afterLabel": "Después"
   },
   "solution": {
     "eyebrow": "La Solución Integral",

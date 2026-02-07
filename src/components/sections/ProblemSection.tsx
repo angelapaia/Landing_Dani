@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useScrollProgress } from '@/lib/hooks/useScrollProgress';
 import { useTranslations } from 'next-intl';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
 
 /**
  * ProblemSection Component
@@ -143,26 +144,13 @@ export default function ProblemSection() {
             </motion.p>
           </div>
 
-          {/* RIGHT SIDE - IMAGEN */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="relative h-full min-h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-red-500/10 border border-white/5"
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-
-            {/* Imagen solicitada */}
-            <img
-              src="https://i.ibb.co/RkLDnwhF/PHOTO-2025-09-11-17-13-33.jpg"
-              alt={t('problem.imageAlt')}
-              className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
-            />
-
-            {/* Decorative Glow Effect behind image */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-brand-accent opacity-20 blur-xl -z-10" />
-          </motion.div>
+          {/* RIGHT SIDE - BEFORE/AFTER SLIDER */}
+          <BeforeAfterSlider
+            beforeImage="https://i.ibb.co/PGT1LH8n/antes.png"
+            afterImage="https://i.ibb.co/S4SKR32y/Despues.png"
+            beforeLabel={t('problem.beforeLabel')}
+            afterLabel={t('problem.afterLabel')}
+          />
         </div>
       </div>
 
