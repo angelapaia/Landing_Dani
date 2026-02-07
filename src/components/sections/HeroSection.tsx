@@ -116,7 +116,7 @@ export default function HeroSection() {
                 delay={0.7}
                 duration={0.08}
               >
-                #{t('hero.protocol')}
+                {`#${t('hero.protocol')}`}
               </SplitText>
             </div>
 
