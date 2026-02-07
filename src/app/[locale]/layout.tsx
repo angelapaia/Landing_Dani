@@ -8,6 +8,7 @@ import { locales } from '@/i18n';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import Header from '@/components/ui/Header';
 
 const DarkVeil = dynamic(
   () => import('@/components/effects/DarkVeil'),
@@ -131,10 +132,8 @@ export default async function LocaleLayout({
       </head>
       <body className="font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {/* Language Switcher - Fixed top right */}
-          <div className="fixed top-6 right-6 z-50">
-            <LanguageSwitcher />
-          </div>
+          {/* Header - Fixed top with logo and language switcher */}
+          <Header />
 
           {/* DarkVeil Background */}
           <DarkVeil />

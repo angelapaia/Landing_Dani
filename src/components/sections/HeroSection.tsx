@@ -2,7 +2,6 @@
 
 import { motion, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import Image from 'next/image';
 import SplitText from '@/components/animated/SplitText';
 import MagnetButton from '@/components/animated/MagnetButton';
 import DualImageCrossfade from '@/components/ui/DualImageCrossfade';
@@ -77,23 +76,6 @@ export default function HeroSection() {
 
       {/* Content Container */}
       <div className="section-container relative z-10">
-        {/* Logo - Top Left */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="absolute top-6 left-6 lg:top-8 lg:left-8 z-20"
-        >
-          <Image
-            src="https://i.ibb.co/TMBDXDjw/LOGO-VERSIONES-Y-FIRMAS-ESPACIALES-DR-DANIEL-CARDONA-19-1.jpg"
-            alt={t('site.name')}
-            width={180}
-            height={60}
-            className="h-12 lg:h-16 w-auto object-contain rounded-lg"
-            priority
-          />
-        </motion.div>
-
         <div className="grid-binary">
           {/* LEFT SIDE - TEXTO */}
           <div className="flex flex-col justify-center space-y-8">
