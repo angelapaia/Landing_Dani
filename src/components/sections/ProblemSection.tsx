@@ -147,7 +147,7 @@ export default function ProblemSection() {
           {/* RIGHT SIDE - BEFORE/AFTER SLIDER */}
           <BeforeAfterSlider
             beforeImage="https://i.ibb.co/PGT1LH8n/antes.png"
-            afterImage="https://i.ibb.co/S4SKR32y/Despues.png"
+            afterImage="https://i.ibb.co/60m8RwDW/despues.png"
             beforeLabel={t('problem.beforeLabel')}
             afterLabel={t('problem.afterLabel')}
           />
