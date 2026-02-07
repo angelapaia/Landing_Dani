@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Merriweather, Inter } from 'next/font/google';
+import Script from 'next/script';
 import '@/styles/globals.css';
 import { siteConfig } from '@/config/siteConfig';
 import dynamic from 'next/dynamic';
@@ -9,6 +10,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import Header from '@/components/ui/Header';
+
+const GTM_ID = 'GTM-53R8JKZJ';
 
 const DarkVeil = dynamic(
   () => import('@/components/effects/DarkVeil'),
@@ -117,6 +120,21 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${merriweather.variable} ${inter.variable}`}>
       <head>
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+
         {/* Preconnect to optimize font loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -131,6 +149,16 @@ export default async function LocaleLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
       <body className="font-sans antialiased">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         <NextIntlClientProvider locale={locale} messages={messages}>
           {/* Header - Fixed top with logo and language switcher */}
           <Header />
