@@ -81,7 +81,7 @@
     "eyebrow": "Resultados Reales",
     "title": "Lo que dicen nuestros pacientes",
     "subtitle": "Casos reales de pacientes que encontraron alivio y mejoraron su calidad de vida",
-    "location": "Bogotá (Centro Médico de la Sabana, Usaquén)",
+    "location": "Bogotá (Edificio Pluss 127)",
     "consultationPrice": "Consulta presencial o virtual 300.000 COP (85 USD)",
     "approach": "Atención privada y contacto directo por WhatsApp",
     "integration": "Centro especializado en lipedema/linfedema (terapia + opción quirúrgica)",
@@ -96,7 +96,7 @@
     "metrics": {
       "location": {
         "label": "Ubicación",
-        "description": "Centro Médico de la Sabana"
+        "description": "Edificio Pluss 127"
       },
       "consultation": {
         "label": "Consulta",
@@ -160,7 +160,7 @@
       },
       {
         "question": "¿Dónde es la consulta y cómo agendo por WhatsApp?",
-        "answer": "La consulta es en Bogotá (Centro Médico de la Sabana, Usaquén). Para agendar, envía un mensaje por WhatsApp con tu nombre, ciudad/país de origen y motivo de consulta. El equipo responde para coordinar fecha disponible."
+        "answer": "La consulta es en Bogotá (Edificio Pluss 127). Para agendar, envía un mensaje por WhatsApp con tu nombre, ciudad/país de origen y motivo de consulta. El equipo responde para coordinar fecha disponible."
       }
     ]
   },
@@ -170,7 +170,7 @@
   "location": {
     "city": "Bogotá",
     "area": "Usaquén",
-    "center": "Centro Médico de la Sabana",
-    "fullAddress": "Centro Médico de la Sabana, Usaquén, Bogotá, Colombia"
+    "center": "Edificio Pluss 127",
+    "fullAddress": "Edificio Pluss 127, Bogotá, Colombia"
   }
 }

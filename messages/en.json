@@ -81,7 +81,7 @@
     "eyebrow": "Real Results",
     "title": "What our patients say",
     "subtitle": "Real cases of patients who found relief and improved their quality of life",
-    "location": "Bogotá (Centro Médico de la Sabana, Usaquén)",
+    "location": "Bogotá (Edificio Pluss 127)",
     "consultationPrice": "In-person or virtual consultation 300,000 COP (85 USD)",
     "approach": "Private care and direct WhatsApp contact",
     "integration": "Specialized center in lipedema/lymphedema (therapy + surgical option)",
@@ -96,7 +96,7 @@
     "metrics": {
       "location": {
         "label": "Location",
-        "description": "Centro Médico de la Sabana"
+        "description": "Edificio Pluss 127"
       },
       "consultation": {
         "label": "Consultation",
@@ -160,7 +160,7 @@
       },
       {
         "question": "Where is the consultation and how do I schedule via WhatsApp?",
-        "answer": "The consultation is in Bogotá (Centro Médico de la Sabana, Usaquén). To schedule, send a WhatsApp message with your name, city/country of origin, and reason for consultation. The team responds to coordinate an available date."
+        "answer": "The consultation is in Bogotá (Edificio Pluss 127). To schedule, send a WhatsApp message with your name, city/country of origin, and reason for consultation. The team responds to coordinate an available date."
       }
     ]
   },
@@ -170,7 +170,7 @@
   "location": {
     "city": "Bogotá",
     "area": "Usaquén",
-    "center": "Centro Médico de la Sabana",
-    "fullAddress": "Centro Médico de la Sabana, Usaquén, Bogotá, Colombia"
+    "center": "Edificio Pluss 127",
+    "fullAddress": "Edificio Pluss 127, Bogotá, Colombia"
   }
 }
